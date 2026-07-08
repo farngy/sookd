@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sook D Catering | ส่งมอบความสุขที่ดีต่อสุขภาพ</title>
+
+    <!-- นำเข้า Google Fonts (Kanit) เพื่อความสวยงามของภาษาไทย -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- นำเข้า Font Awesome สำหรับไอคอน -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- นำเข้า Tailwind CSS ผ่าน CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- กำหนดค่าตั้งต้นของ Tailwind (สีและฟอนต์) -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Kanit", "sans-serif"],
+            },
+            colors: {
+              brand: {
+                light: "#d1fae5", // emerald-100
+                DEFAULT: "#059669", // emerald-600
+                dark: "#065f46", // emerald-800
+                accent: "#f59e0b", // amber-500
+              },
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      /* สไตล์เพิ่มเติมเล็กน้อยสำหรับการไล่สีและเงา */
+      .hero-gradient {
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)),
+          url("bg.png")
+            center/cover no-repeat;
+      }
+      .service-card:hover img {
+        transform: scale(1.05);
+      }
+    </style>
+  </head>
+  <body class="font-sans text-stone-800 bg-stone-50 antialiased">
+    <!-- Navbar -->
+    <nav
+      class="fixed w-full z-50 transition-all duration-300 bg-white/95 backdrop-blur-sm shadow-sm"
+      id="navbar"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-20">
+          <!-- โลโก้ -->
+          <div
+            class="flex-shrink-0 flex items-center cursor-pointer"
+            onclick="window.scrollTo(0,0)"
+          >
+            <i class="fa-solid fa-leaf text-brand text-2xl mr-2"></i>
+            <span class="font-bold text-2xl text-stone-900 tracking-tight"
+              >Sook D<span class="text-brand">.</span></span
+            >
+          </div>
+
+          <!-- เมนูเดสก์ท็อป -->
+          <div class="hidden md:flex items-center space-x-8">
+            <a
+              href="#about"
+              class="text-stone-600 hover:text-brand font-medium transition-colors"
+              >เกี่ยวกับเรา</a
+            >
+            <a
+              href="#services"
+              class="text-stone-600 hover:text-brand font-medium transition-colors"
+              >บริการของเรา</a
+            >
+            <a
+              href="#packages"
+              class="text-stone-600 hover:text-brand font-medium transition-colors"
+              >แพ็กเกจ</a
+            >
+            <a
+              href="#reviews"
+              class="text-stone-600 hover:text-brand font-medium transition-colors"
+              >รีวิว</a
+            >
+            <a
+              href="#contact"
+              class="bg-brand text-white px-6 py-2 rounded-full font-medium hover:bg-brand-dark transition-colors shadow-md shadow-brand/30"
+              >ติดต่อสั่งอาหาร</a
+            >
+          </div>
+
+          <!-- ปุ่มเมนูมือถือ -->
+          <div class="md:hidden flex items-center">
+            <button
+              id="mobile-menu-btn"
+              class="text-stone-600 hover:text-brand focus:outline-none p-2"
+            >
+              <i class="fa-solid fa-bars text-2xl"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- เมนูมือถือ (ซ่อนตอนเริ่มต้น) -->
+      <div
+        id="mobile-menu"
+        class="hidden md:hidden bg-white border-t border-stone-100 absolute w-full"
+      >
+        <div class="px-4 pt-2 pb-6 space-y-2 shadow-lg">
+          <a
+            href="#about"
+            class="block px-3 py-2 rounded-md text-base font-medium text-stone-700 hover:text-brand hover:bg-stone-50"
+            >เกี่ยวกับเรา</a
+          >
+          <a
+            href="#services"
+            class="block px-3 py-2 rounded-md text-base font-medium text-stone-700 hover:text-brand hover:bg-stone-50"
+            >บริการของเรา</a
+          >
+          <a
+            href="#packages"
+            class="block px-3 py-2 rounded-md text-base font-medium text-stone-700 hover:text-brand hover:bg-stone-50"
+            >แพ็กเกจ</a
+          >
+          <a
+            href="#reviews"
+            class="block px-3 py-2 rounded-md text-base font-medium text-stone-700 hover:text-brand hover:bg-stone-50"
+            >รีวิว</a
+          >
+          <a
+            href="#contact"
+            class="block mt-4 text-center bg-brand text-white px-6 py-3 rounded-full font-medium hover:bg-brand-dark"
+            >ติดต่อสั่งอาหาร</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <!-- ส่วนที่ 1: หน้าแรก (Hero Section) -->
+    <header
+      class="hero-gradient min-h-screen flex items-center justify-center pt-20"
+    >
+      <div class="text-center px-4 max-w-4xl mx-auto">
+        <span
+          class="inline-block py-1 px-3 rounded-full bg-brand/20 text-brand-light backdrop-blur-md border border-brand/30 mb-6 text-sm font-medium tracking-wider uppercase"
+          >Healthy & Premium</span
+        >
+        <h1
+          class="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight"
+        >
+          ส่งมอบ <span class="text-brand-light">"ความสุข"</span>
+          <br class="hidden md:block" />ที่ดีต่อสุขภาพ ในทุกมื้อของคุณ
+        </h1>
+        <p
+          class="text-lg md:text-xl text-stone-200 mb-10 max-w-2xl mx-auto font-light leading-relaxed"
+        >
+          Sook D Catering บริการอาหารจัดเลี้ยง ผูกปิ่นโตเดลิเวอรี
+          และคาเฟ่ชาดอกไม้พรีเมียม ปรุงด้วยความใส่ใจ คัดสรรวัตถุดิบเพื่อสุขภาพ
+          เพื่อให้คุณและคนที่คุณรักมีความสุขในทุกๆ คำ
+        </p>
+        <div
+          class="flex flex-col sm:flex-row justify-center items-center gap-4"
+        >
+          <a
+            href="#services"
+            class="w-full sm:w-auto px-8 py-4 bg-brand text-white rounded-full font-semibold text-lg hover:bg-brand-dark transition-all transform hover:-translate-y-1 shadow-lg shadow-brand/40"
+          >
+            ดูบริการของเรา
+          </a>
+          <a
+            href="#contact"
+            class="w-full sm:w-auto px-8 py-4 bg-white/10 text-white backdrop-blur-md border border-white/30 rounded-full font-semibold text-lg hover:bg-white hover:text-stone-900 transition-all"
+          >
+            สอบถามแพ็กเกจจัดเลี้ยง
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- ส่วนที่ 2: เกี่ยวกับเรา (Our Concept) -->
+    <section id="about" class="py-24 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <!-- รูปภาพ -->
+          <div class="relative">
+            <img
+              src="https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?auto=format&fit=crop&q=80&w=1000"
+              alt="เชฟทำอาหารเพื่อสุขภาพ"
+              class="rounded-2xl shadow-2xl object-cover h-[500px] w-full"
+            />
+            <div
+              class="absolute -bottom-6 -right-6 bg-brand text-white p-6 rounded-2xl shadow-xl hidden md:block"
+            >
+              <p class="text-4xl font-bold">100%</p>
+              <p class="text-sm font-medium mt-1">วัตถุดิบออร์แกนิก</p>
+            </div>
+          </div>
+          <!-- ข้อความ -->
+          <div>
+            <h2 class="text-brand font-semibold tracking-wider uppercase mb-2">
+              Our Concept
+            </h2>
+            <h3 class="text-3xl md:text-4xl font-bold text-stone-900 mb-6">
+              ทำไมต้อง Sook D Catering?
+            </h3>
+            <p class="text-stone-600 mb-8 leading-relaxed text-lg">
+              เราเชื่อว่าอาหารที่ดีคือจุดเริ่มต้นของสุขภาพและความสุข
+              เราจึงพิถีพิถันตั้งแต่การเลือกวัตถุดิบออร์แกนิก
+              ปรุงรสอย่างเป็นธรรมชาติ ลดหวาน ลดมัน ลดเค็ม
+              แต่ยังคงความอร่อยจัดจ้านในแบบฉบับที่ทุกคนถูกปาก
+              ไม่ว่าจะเป็นมื้อเร่งด่วน มื้อพักผ่อน หรือวันสำคัญของคุณ
+            </p>
+
+            <ul class="space-y-6">
+              <li class="flex items-start">
+                <div
+                  class="flex-shrink-0 h-12 w-12 rounded-full bg-brand/10 flex items-center justify-center text-brand mt-1"
+                >
+                  <i class="fa-solid fa-leaf text-xl"></i>
+                </div>
+                <div class="ml-4">
+                  <h4 class="text-xl font-bold text-stone-900">
+                    วัตถุดิบพรีเมียม
+                  </h4>
+                  <p class="text-stone-600 mt-1">
+                    คัดสรรผักผลไม้สดใหม่จากฟาร์ม และเนื้อสัตว์คุณภาพเยี่ยม
+                  </p>
+                </div>
+              </li>
+              <li class="flex items-start">
+                <div
+                  class="flex-shrink-0 h-12 w-12 rounded-full bg-brand/10 flex items-center justify-center text-brand mt-1"
+                >
+                  <i class="fa-solid fa-heart-pulse text-xl"></i>
+                </div>
+                <div class="ml-4">
+                  <h4 class="text-xl font-bold text-stone-900">ดีต่อสุขภาพ</h4>
+                  <p class="text-stone-600 mt-1">
+                    ปรุงด้วยน้ำมันที่ดี ปราศจากผงชูรสและสารกันบูดทุกชนิด
+                  </p>
+                </div>
+              </li>
+              <li class="flex items-start">
+                <div
+                  class="flex-shrink-0 h-12 w-12 rounded-full bg-brand/10 flex items-center justify-center text-brand mt-1"
+                >
+                  <i class="fa-solid fa-earth-asia text-xl"></i>
+                </div>
+                <div class="ml-4">
+                  <h4 class="text-xl font-bold text-stone-900">รักษ์โลก</h4>
+                  <p class="text-stone-600 mt-1">
+                    บรรจุภัณฑ์ใส่อาหารและปิ่นโตของเราเป็นมิตรต่อสิ่งแวดล้อม
+                  </p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ส่วนที่ 3: บริการของเรา (Our Services) -->
+    <section id="services" class="py-24 bg-stone-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <h2 class="text-brand font-semibold tracking-wider uppercase mb-2">
+            Our Services
+          </h2>
+          <h3 class="text-3xl md:text-4xl font-bold text-stone-900 mb-4">
+            บริการจาก Sook D
+          </h3>
+          <p class="text-stone-600 text-lg">
+            ตอบโจทย์ทุกไลฟ์สไตล์ ด้วยบริการที่หลากหลายเพื่อสุขภาพที่ดีของคุณ
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+          <!-- บริการ 1 -->
+          <div
+            class="service-card bg-white rounded-2xl shadow-md overflow-hidden transition-shadow hover:shadow-xl group"
+          >
+            <div class="relative overflow-hidden h-64">
+              <img
+                src="https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&q=80&w=800"
+                alt="บริการรับจัดเลี้ยง"
+                class="w-full h-full object-cover transition-transform duration-500"
+              />
+              <div
+                class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm p-3 rounded-full text-brand shadow-sm"
+              >
+                <i class="fa-solid fa-bell-concierge text-xl"></i>
+              </div>
+            </div>
+            <div class="p-8">
+              <h4
+                class="text-2xl font-bold text-stone-900 mb-3 group-hover:text-brand transition-colors"
+              >
+                1. บริการรับจัดเลี้ยง<br /><span
+                  class="text-lg font-medium text-stone-500"
+                  >Healthy Catering</span
+                >
+              </h4>
+              <p class="text-stone-600 mb-6 line-clamp-3">
+                ยกระดับงานสำคัญของคุณด้วยบริการจัดเลี้ยงที่ตอบโจทย์ทั้งความอร่อยและสุขภาพ
+                เหมาะสำหรับงานประชุม สัมมนา งานแต่งงาน หรืองานสังสรรค์
+                พร้อมบริการตกแต่งสถานที่อย่างสวยงาม
+              </p>
+             
+            </div>
+          </div>
+
+          <!-- บริการ 2 -->
+          <div
+            class="service-card bg-white rounded-2xl shadow-md overflow-hidden transition-shadow hover:shadow-xl group"
+          >
+            <div class="relative overflow-hidden h-64">
+              <img
+                src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=800"
+                alt="ส่งอาหารแบบผูกปิ่นโต"
+                class="w-full h-full object-cover transition-transform duration-500"
+              />
+              <div
+                class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm p-3 rounded-full text-brand shadow-sm"
+              >
+                <i class="fa-solid fa-motorcycle text-xl"></i>
+              </div>
+            </div>
+            <div class="p-8">
+              <h4
+                class="text-2xl font-bold text-stone-900 mb-3 group-hover:text-brand transition-colors"
+              >
+                2. ผูกปิ่นโตเดลิเวอรี<br /><span
+                  class="text-lg font-medium text-stone-500"
+                  >Healthy Pinto</span
+                >
+              </h4>
+              <p class="text-stone-600 mb-6 line-clamp-3">
+                หมดปัญหาคิดเมนูไม่ออก!
+                บริการส่งอาหารเพื่อสุขภาพถึงหน้าบ้านหรือออฟฟิศทุกวัน
+                มีทั้งคอร์สอาหารคลีน มังสวิรัติ
+                หรืออาหารไทยรสชาติดั้งเดิมที่ปรับสูตรให้ดีต่อสุขภาพ
+              </p>
+              
+            </div>
+          </div>
+
+          <!-- บริการ 3 -->
+          <div
+            class="service-card bg-white rounded-2xl shadow-md overflow-hidden transition-shadow hover:shadow-xl group"
+          >
+            <div class="relative overflow-hidden h-64">
+              <img
+                src="tea.png"
+                alt="คาเฟ่และชาดอกไม้"
+                class="w-full h-full object-cover transition-transform duration-500"
+              />
+              <div
+                class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm p-3 rounded-full text-brand shadow-sm"
+              >
+                <i class="fa-solid fa-mug-hot text-xl"></i>
+              </div>
+            </div>
+            <div class="p-8">
+              <h4
+                class="text-2xl font-bold text-stone-900 mb-3 group-hover:text-brand transition-colors"
+              >
+                3. คาเฟ่ & ชาดอกไม้<br /><span
+                  class="text-lg font-medium text-stone-500"
+                  >Cafe & Flower Tea</span
+                >
+              </h4>
+              <p class="text-stone-600 mb-6 line-clamp-3">
+                แวะมาพักผ่อนที่คาเฟ่ของเรา
+                สัมผัสความหอมกรุ่นของชาดอกไม้ออร์แกนิก เช่น เก๊กฮวยหิมะ ชากุหลาบ
+                ที่ช่วยปรับสมดุลร่างกาย ทานคู่กับเบเกอรีโฮมเมดสูตรหวานน้อย
+              </p>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ส่วนที่ 4: แพ็กเกจแนะนำ (Recommended Packages) -->
+    <section id="packages" class="py-24 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <h2 class="text-brand font-semibold tracking-wider uppercase mb-2">
+            Pricing & Packages
+          </h2>
+          <h3 class="text-3xl md:text-4xl font-bold text-stone-900 mb-4">
+            แพ็กเกจยอดนิยม
+          </h3>
+          <p class="text-stone-600 text-lg">
+            คุ้มค่า ทั้งคุณภาพและราคา เพื่อสุขภาพที่ยั่งยืน
+          </p>
+        </div>
+
+        <div
+          class="overflow-x-auto rounded-2xl shadow-lg border border-stone-100"
+        >
+          <table class="w-full text-left border-collapse bg-white">
+            <thead>
+              <tr class="bg-brand text-white text-lg">
+                <th class="p-5 font-semibold rounded-tl-2xl w-1/4">บริการ</th>
+                <th class="p-5 font-semibold w-2/4">รายละเอียด</th>
+                <th class="p-5 font-semibold rounded-tr-2xl w-1/4">
+                  ราคาเริ่มต้น
+                </th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-stone-100 text-stone-700">
+              <tr class="hover:bg-stone-50 transition-colors">
+                <td class="p-5 font-bold text-stone-900">
+                  <i class="fa-solid fa-box text-brand mr-2"></i> ผูกปิ่นโต
+                  (รายสัปดาห์)
+                </td>
+                <td class="p-5">
+                  อาหารสุขภาพ 2 มื้อ/วัน (จันทร์-ศุกร์) หมุนเวียนเมนูไม่ซ้ำ
+                  ส่งฟรีในระยะ 5 กม.
+                </td>
+                <td class="p-5 font-bold text-brand text-lg">
+                  1,490
+                  <span class="text-sm font-normal text-stone-500"
+                    >บาท / สัปดาห์</span
+                  >
+                </td>
+              </tr>
+              <tr class="hover:bg-stone-50 transition-colors">
+                <td class="p-5 font-bold text-stone-900">
+                  <i class="fa-solid fa-cookie-bite text-brand mr-2"></i> Snack
+                  Box
+                </td>
+                <td class="p-5">
+                  ขนมอบเพื่อสุขภาพ 2 ชิ้น + ชาดอกไม้สกัดเย็น 1 ขวด
+                  (แพ็กเกจกล่องรักษ์โลก)
+                </td>
+                <td class="p-5 font-bold text-brand text-lg">
+                  89
+                  <span class="text-sm font-normal text-stone-500"
+                    >บาท / กล่อง</span
+                  >
+                </td>
+              </tr>
+              <tr class="hover:bg-stone-50 transition-colors">
+                <td class="p-5 font-bold text-stone-900">
+                  <i class="fa-solid fa-utensils text-brand mr-2"></i> Catering
+                  (บุฟเฟต์)
+                </td>
+                <td class="p-5">
+                  อาหารคาว 5 อย่าง, ซุป 1, ของหวาน 1, น้ำสมุนไพร/ชาดอกไม้
+                  (พร้อมพนักงานดูแล)
+                </td>
+                <td class="p-5 font-bold text-brand text-lg">
+                  350
+                  <span class="text-sm font-normal text-stone-500"
+                    >บาท / ท่าน</span
+                  >
+                </td>
+              </tr>
+              <tr class="hover:bg-stone-50 transition-colors">
+                <td class="p-5 font-bold text-stone-900">
+                  <i class="fa-solid fa-mug-saucer text-brand mr-2"></i>
+                  Afternoon Tea Set
+                </td>
+                <td class="p-5">
+                  เซตชาดอกไม้พรีเมียมสำหรับ 2 ท่าน
+                  พร้อมชั้นวางเบเกอรีโฮมเมดคละรส (เฉพาะทานที่ร้าน)
+                </td>
+                <td class="p-5 font-bold text-brand text-lg">
+                  299
+                  <span class="text-sm font-normal text-stone-500"
+                    >บาท / เซต</span
+                  >
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="mt-10 text-center">
+          <p class="text-stone-500 mb-4">
+            * สามารถปรับเปลี่ยนเมนูและงบประมาณได้ตามความต้องการ
+          </p>
+          <a
+            href="#contact"
+            class="inline-block px-8 py-3 bg-stone-900 text-white rounded-full font-medium hover:bg-brand transition-colors"
+            >ติดต่อขอใบเสนอราคา</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- ส่วนที่ 5: รีวิวจากลูกค้า (Testimonials) -->
+    <section id="reviews" class="py-24 bg-brand-light/30">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold text-stone-900 mb-4">
+            เสียงตอบรับจากลูกค้า Sook D
+          </h2>
+          <div class="flex justify-center text-brand mb-4">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
+            ><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
+            ><i class="fa-solid fa-star"></i>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          <!-- รีวิว 1 -->
+          <div
+            class="bg-white p-8 rounded-2xl shadow-sm border border-brand/10 relative"
+          >
+            <i
+              class="fa-solid fa-quote-left text-4xl text-brand/20 absolute top-6 left-6"
+            ></i>
+            <p class="text-stone-700 italic mb-6 relative z-10 pt-4 text-lg">
+              "รสชาติอร่อยมาก ไม่เหมือนอาหารคลีนทั่วไปที่เคยทาน
+              เมนูผูกปิ่นโตหลากหลาย ไม่จำเจเลยค่ะ วัตถุดิบสดจริง
+              รู้สึกสุขภาพดีขึ้นตั้งแต่เดือนแรกที่ทาน"
+            </p>
+            <div class="flex items-center">
+              <img
+                src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=150"
+                alt="ลูกค้า"
+                class="w-14 h-14 rounded-full object-cover border-2 border-brand-light"
+              />
+              <div class="ml-4">
+                <h5 class="font-bold text-stone-900">คุณแพรว</h5>
+                <p class="text-sm text-stone-500">
+                  พนักงานออฟฟิศ (ลูกค้าผูกปิ่นโตรายเดือน)
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- รีวิว 2 -->
+          <div
+            class="bg-white p-8 rounded-2xl shadow-sm border border-brand/10 relative"
+          >
+            <i
+              class="fa-solid fa-quote-left text-4xl text-brand/20 absolute top-6 left-6"
+            ></i>
+            <p class="text-stone-700 italic mb-6 relative z-10 pt-4 text-lg">
+              "ใช้บริการจัดเลี้ยงงานสัมมนา
+              แขกชมกันทุกคนว่าอาหารอร่อยและจัดไลน์บุฟเฟต์ได้สวยงามมาก
+              ประทับใจชาดอกไม้ที่สุดครับ หอมผ่อนคลายมาก"
+            </p>
+            <div class="flex items-center">
+              <img
+                src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=150"
+                alt="ลูกค้า"
+                class="w-14 h-14 rounded-full object-cover border-2 border-brand-light"
+              />
+              <div class="ml-4">
+                <h5 class="font-bold text-stone-900">คุณกวิน</h5>
+                <p class="text-sm text-stone-500">
+                  ผู้จัดงานอีเวนต์ (บริการ Catering)
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ส่วนที่ 6: ติดต่อเรา (Contact & Footer) -->
+    <footer id="contact" class="bg-stone-900 text-stone-300 py-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 border-b border-stone-800 pb-12"
+        >
+          <!-- ข้อมูลแบรนด์ -->
+          <div class="lg:col-span-1">
+            <div class="flex items-center mb-6">
+              <i class="fa-solid fa-leaf text-brand text-3xl mr-2"></i>
+              <span class="font-bold text-3xl text-white tracking-tight"
+                >Sook D<span class="text-brand">.</span></span
+              >
+            </div>
+            <p class="mb-6 text-stone-400">
+              ส่งมอบความสุขที่ดีต่อสุขภาพ ในทุกมื้อของคุณ
+              ด้วยอาหารและเครื่องดื่มที่ปรุงด้วยความใส่ใจ
+            </p>
+            <div class="flex space-x-4">
+              <a
+                href="#"
+                class="w-10 h-10 rounded-full bg-stone-800 flex items-center justify-center hover:bg-brand hover:text-white transition-colors"
+                ><i class="fa-brands fa-facebook-f"></i
+              ></a>
+              <a
+                href="#"
+                class="w-10 h-10 rounded-full bg-stone-800 flex items-center justify-center hover:bg-brand hover:text-white transition-colors"
+                ><i class="fa-brands fa-instagram"></i
+              ></a>
+              <a
+                href="#"
+                class="w-10 h-10 rounded-full bg-stone-800 flex items-center justify-center hover:bg-brand hover:text-white transition-colors"
+                ><i class="fa-brands fa-tiktok"></i
+              ></a>
+              <a
+                href="#"
+                class="w-10 h-10 rounded-full bg-brand flex items-center justify-center text-white hover:bg-brand-light hover:text-brand transition-colors"
+                ><i class="fa-brands fa-line"></i
+              ></a>
+            </div>
+          </div>
+
+          <!-- ช่องทางติดต่อ -->
+          <div class="lg:col-span-1">
+            <h4 class="text-white text-lg font-bold mb-6">
+              เริ่มต้นมื้อสุขภาพดีๆ
+            </h4>
+            <ul class="space-y-4">
+              <li class="flex items-start">
+                <i class="fa-brands fa-line text-brand mt-1 mr-3 text-xl"></i>
+                <div>
+                  <p class="text-sm text-stone-500">Line Official</p>
+                  <p class="font-medium text-white">@learndo</p>
+                </div>
+              </li>
+              <li class="flex items-start">
+                <i class="fa-solid fa-phone text-brand mt-1 mr-3 text-xl"></i>
+                <div>
+                  <p class="text-sm text-stone-500">เบอร์โทรศัพท์</p>
+                  <p class="font-medium text-white">092-5054994</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- ที่อยู่ร้าน -->
+          <div class="lg:col-span-1">
+            <h4 class="text-white text-lg font-bold mb-6">
+              ที่ตั้งคาเฟ่ (หน้าร้าน)
+            </h4>
+            <ul class="space-y-4">
+              <li class="flex items-start">
+                <i
+                  class="fa-solid fa-location-dot text-brand mt-1 mr-3 text-xl"
+                ></i>
+                <div>
+                  <p class="text-white">
+                    68/7 หมู่ 3 ตำบลบางกอบัว <br />อำเภอพระประแดง สมุทรปราการ
+                    10130
+                  </p>
+                </div>
+              </li>
+              <li class="flex items-start">
+                <i class="fa-regular fa-clock text-brand mt-1 mr-3 text-xl"></i>
+                <div>
+                  <p class="text-sm text-stone-500">เวลาเปิดทำการ</p>
+                  <p class="font-medium text-white">
+                    เปิดทุกวัน 08:00 - 18:00 น.
+                  </p>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          
+
+        <div class="text-center pt-8 text-sm text-stone-500">
+          &copy; <span id="year"></span> Sook D Catering. All rights reserved.
+        </div>
+      </div>
+    </footer>
+
+    <!-- JavaScript เบื้องต้น -->
+    <script>
+      // อัพเดทปีปัจจุบันใน Footer
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      // ระบบเปิด/ปิด เมนูมือถือ
+      const btn = document.getElementById("mobile-menu-btn");
+      const menu = document.getElementById("mobile-menu");
+      const icon = btn.querySelector("i");
+
+      btn.addEventListener("click", () => {
+        menu.classList.toggle("hidden");
+        if (menu.classList.contains("hidden")) {
+          icon.classList.remove("fa-xmark");
+          icon.classList.add("fa-bars");
+        } else {
+          icon.classList.remove("fa-bars");
+          icon.classList.add("fa-xmark");
+        }
+      });
+
+      // ปิดเมนูมือถือเมื่อคลิกลิงก์
+      const mobileLinks = menu.querySelectorAll("a");
+      mobileLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          menu.classList.add("hidden");
+          icon.classList.remove("fa-xmark");
+          icon.classList.add("fa-bars");
+        });
+      });
+
+      // เปลี่ยนสี Navbar เมื่อ Scroll
+      window.addEventListener("scroll", () => {
+        const navbar = document.getElementById("navbar");
+        if (window.scrollY > 20) {
+          navbar.classList.add("shadow-md");
+          navbar.classList.remove("shadow-sm");
+        } else {
+          navbar.classList.add("shadow-sm");
+          navbar.classList.remove("shadow-md");
+        }
+      });
+    </script>
+  </body>
+</html>
